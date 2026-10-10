@@ -24,7 +24,7 @@ def get_model_from_init():
     print(resp.content)
 
 
-# get_model_from_init()
+# get_model_from_init() 调用1
 
 
 # 提示词
@@ -66,4 +66,29 @@ def prompt_template_demo():
     print(resp.content)
 
 
-prompt_template_demo()
+# prompt_template_demo()  调用2
+# 从langchain.chat_models导入初始化大模型的工具函数
+from langchain.chat_models import init_chat_model
+# 导入LangChain的对话提示模板，用来组装system和用户prompt
+from langchain_core.prompts import ChatPromptTemplate
+import dotenv
+
+dotenv.load_dotenv()
+
+llm = init_chat_model(
+    model="gpt-5.6-sol",
+    model_provider="openai",
+)
+
+prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", "你是一个专业的学习助手。"),
+        ("human", "请解释什么是{topic}。"),
+    ]
+)
+
+chain = prompt | llm
+
+response = chain.invoke({"topic": "ai大模型"})
+
+print(response.content)
