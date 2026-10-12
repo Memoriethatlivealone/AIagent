@@ -92,4 +92,4 @@ chain = prompt | llm
 response = chain.invoke({"topic": "ai大模型"})
 
 print(response.content)
-#xxx
+#xxx 学习好难
