@@ -47,7 +47,7 @@ def prompt_template_demo():
     # 3. 填充模板变量
     chat_message_list = chat_prompt_template.invoke(
         {
-            "product": "macbook air m5 16g+512g",
+            "product": "macbook air m5 24g+512g",
             "aspect1": "价格",
             "aspect2": "是否适合购买和购买性价比",
         }
@@ -66,30 +66,32 @@ def prompt_template_demo():
     print(resp.content)
 
 
-# prompt_template_demo()  调用2
+prompt_template_demo()  
 # 从langchain.chat_models导入初始化大模型的工具函数
-from langchain.chat_models import init_chat_model
-# 导入LangChain的对话提示模板，用来组装system和用户prompt
-from langchain_core.prompts import ChatPromptTemplate
-import dotenv
+# from langchain.chat_models import init_chat_model
+# # 导入LangChain的对话提示模板，用来组装system和用户prompt
+# from langchain_core.prompts import ChatPromptTemplate
+# from openai import OpenAI
+# import dotenv
+# import os
+# dotenv.load_dotenv()
 
-dotenv.load_dotenv()
+# llm = init_chat_model(
+#     model="gpt-5.6-sol",
+#     model_provider="openai",
+#     base_url=os.getenv("OPENAI_BASE_URL"),
+#     api_key=os.getenv("OPENAI_API_KEY"),
+# )
 
-llm = init_chat_model(
-    model="gpt-5.6-sol",
-    model_provider="openai",
-)
+# prompt = ChatPromptTemplate.from_messages(
+#     [
+#         ("system", "你是一个专业的学习助手。"),
+#         ("human", "请解释什么是{topic}。"),
+#     ]
+# )
 
-prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", "你是一个专业的学习助手。"),
-        ("human", "请解释什么是{topic}。"),
-    ]
-)
+# chain = prompt | llm
 
-chain = prompt | llm
+# response = chain.invoke({"topic": "ai大模型"})
 
-response = chain.invoke({"topic": "ai大模型"})
-
-print(response.content)
-#xxx 学习好难
+# print(response.content)
